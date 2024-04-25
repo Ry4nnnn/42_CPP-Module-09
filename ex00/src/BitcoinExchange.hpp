@@ -1,9 +1,29 @@
-#ifndef BITCOINEXCHANGE_HPP
-# define BITCOINEXCHANGE_HPP
+#pragma once
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <map>
+#include <fstream>
+#include <sstream>
+#include <cstdlib>
 
-class	
+class BitcoinExchange {
+	private:
+			std::map<std::string, double> _record;
 
-#endif
+	public:
+			BitcoinExchange();
+			BitcoinExchange(std::string filename);
+			BitcoinExchange(const BitcoinExchange &a);
+			BitcoinExchange	&operator=(const BitcoinExchange &a);
+			~BitcoinExchange();
+			void	openFile();
+			class	OpenFail : public std::exception
+			{
+				virtual	const char *what() const throw()
+				{
+					return "Unable to open file.";
+				}
+			};
+};
